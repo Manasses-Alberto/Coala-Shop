@@ -76,6 +76,6 @@ USE_I18N = True
 USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = join(BASE_DIR, 'coala_shop_app', 'static')
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = join(BASE_DIR, 'coala_shop_app', 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

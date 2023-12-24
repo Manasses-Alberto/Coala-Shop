@@ -7,7 +7,7 @@ class Product(models.Model):
     price = models.PositiveBigIntegerField()
     description = models.TextField(max_length=300)
     iva = models.IntegerField()
-    image = models.ImageField(upload_to='')
+    image = models.ImageField(upload_to='images/')
     added = models.DateTimeField()
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
 

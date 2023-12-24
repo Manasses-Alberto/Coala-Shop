@@ -19,7 +19,7 @@
             <h1>Coala Shop</h1>
         </div>
         <div class="input-group" id="search-products-area">
-            <input type="text" class="form-control" aria-label="Pesquisa dos produtos" placeholder="Pesquise produtos">
+            <input type="text" class="form-control" aria-label="Procurar produtos" placeholder="Procurar produtos">
             <button type="button" class="dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
               <span>Categorias</span>
             </button>
@@ -36,6 +36,24 @@
             <button class="btn btn-link d-flex align-items-center justify-content-between" id="add-product-btn"><i class="bi bi-cart-fill"></i><span>0</span></button>
           </div>
     </header>
+    <main class="container">
+      <ul class="col-12 d-flex align-items-center justify-content-left flex-wrap">
+        {% for product in products %}
+        <li>
+          <div class="card" style="width: 18rem;">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="Imagem do produto {{ product.name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }} - {{ product.price }} Kz</h5>
+              <div class="d-flex align-items-center justify-content-between">
+                <a href="#" class="btn btn-primary">Comprar</a>
+                <a href="#" class="btn btn-primary">Saiba mais</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
