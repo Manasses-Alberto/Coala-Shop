@@ -1,7 +1,41 @@
-Página principal
-<a href="{% url 'logout' %}">Encerrar sessão</a>
-<ul>
-    {% for product in products %}
-    <li>{{ product.name }} - <a href="{% url 'add_buy' product.id %}">Comprar</a> - <a href="#">Like</a></li>
-    {% endfor %}
-</ul>
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coala Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+</head>
+<body>
+    <header class="container-fluid d-flex justify-content-around align-items-center">
+        <div id="logo-area" class="d-flex flex-column justify-content-center align-items-center">
+            <img src="{% static 'images/coala-shop-logo.png' %}" alt="Logotipo da loja online Coala Shop">
+            <h1>Coala Shop</h1>
+        </div>
+        <div class="input-group" id="search-products-area">
+            <input type="text" class="form-control" aria-label="Pesquisa dos produtos" placeholder="Pesquise produtos">
+            <button type="button" class="dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span>Categorias</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item">Desportivo</a></li>
+              <li><a class="dropdown-item">Mais velozes</a></li>
+              <li><a class="dropdown-item">Mais tecnológicos</a></li>
+              <li><a class="dropdown-item">Mais simples</a></li>
+            </ul>
+            <button type="button" id="search-product-btn" class="px-3"><i class="bi bi-search"></i></button>
+          </div>
+          <div id="user-actions-area" class="d-flex align-items-center justify-content-between">
+            <button class="btn btn-link d-flex align-items-center justify-content-between"><i class="bi bi-person-circle"></i>Minha conta</button>
+            <button class="btn btn-link d-flex align-items-center justify-content-between" id="add-product-btn"><i class="bi bi-cart-fill"></i><span>0</span></button>
+          </div>
+    </header>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
