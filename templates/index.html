@@ -1,2 +1,7 @@
 Página principal
 <a href="{% url 'logout' %}">Encerrar sessão</a>
+<ul>
+    {% for product in products %}
+    <li>{{ product.name }} - <a href="{% url 'add_buy' product.id %}">Comprar</a> - <a href="#">Like</a></li>
+    {% endfor %}
+</ul>

@@ -1,11 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from coala_shop_app.models import Product, Shoppings
+from datetime import datetime
 
 @login_required(login_url='/auth/login/')
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'products': Product.objects.all()})
 
 def login(request):
     if request.method == 'GET':
@@ -69,3 +71,9 @@ def register(request):
             user = authenticate(request, username=f'{first_name.strip().title()} {surname.strip().title()}', password=password)
             auth_login(request, user)
             return redirect('home')
+
+def add_buy(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    new_shopping = Shoppings.objects.create(buyer=request.user, product=product, date=datetime.today().now())
+    new_shopping.save()
+    return redirect('home')
