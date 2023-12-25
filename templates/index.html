@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'styles/index.css' %}">
 </head>
 <body>
-    <header class="container-fluid d-flex justify-content-around align-items-center">
+    <header class="container-fluid d-flex justify-content-around align-items-center position-fixed">
         <div id="logo-area" class="d-flex flex-column justify-content-center align-items-center">
             <img src="{% static 'images/coala-shop-logo.png' %}" alt="Logotipo da loja online Coala Shop">
             <h1>Coala Shop</h1>
@@ -24,10 +24,10 @@
               <span>Categorias</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item">Desportivo</a></li>
-              <li><a class="dropdown-item">Mais velozes</a></li>
-              <li><a class="dropdown-item">Mais tecnológicos</a></li>
-              <li><a class="dropdown-item">Mais simples</a></li>
+              <li><a class="dropdown-item">De uso geral</a></li>
+              <li><a class="dropdown-item">Social</a></li>
+              <li><a class="dropdown-item">Reuniões</a></li>
+              <li><a class="dropdown-item">Gamers</a></li>
             </ul>
             <button type="button" id="search-product-btn" class="px-3"><i class="bi bi-search"></i></button>
           </div>
@@ -37,23 +37,50 @@
           </div>
     </header>
     <main class="container">
-      <ul class="col-12 d-flex align-items-center justify-content-left flex-wrap">
+      <ul class="col-12 d-flex align-items-center justify-content-left flex-wrap gap-3">
         {% for product in products %}
         <li>
-          <div class="card" style="width: 18rem;">
-            <img src="{{ product.image.url }}" class="card-img-top" alt="Imagem do produto {{ product.name }}">
-            <div class="card-body">
-              <h5 class="card-title">{{ product.name }} - {{ product.price }} Kz</h5>
-              <div class="d-flex align-items-center justify-content-between">
-                <a href="#" class="btn btn-primary">Comprar</a>
-                <a href="#" class="btn btn-primary">Saiba mais</a>
-              </div>
+          <div class="card">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="Imagem do {{ product.name }}">
+            <div class="card-body d-flex flex-column align-items-start justify-content-between">
+              <h5 class="card-title">{{ product.name }} - {{ product.price }},00 Kz</h5>
+              <p>Categoria: {{ product.category }}</p>
+              <button class="w-100 rounded"><i class="bi bi-currency-dollar"></i>Comprar</button>
             </div>
           </div>
         </li>
         {% endfor %}
       </ul>
     </main>
+    <footer class="container-fluid d-flex align-items-start justify-content-evenly p-3">
+      <div class="container">
+        <h1 class="text-center">Links úteis</h1>
+        <nav class="d-flex align-items-start justify-content-left flex-column gap-3">
+          <a href="#">VR Para Negócios</a>
+          <a href="#">VR Para Socializar</a>
+          <a href="#">VR Para Jogos</a>
+          <a href="#">VRs da Meta Inc.</a>
+        </nav>
+      </div>
+      <div class="container">
+        <h1 class="text-center">Suporte</h1>
+        <nav class="d-flex align-items-start justify-content-left flex-column gap-3">
+          <a href="#"><i class="bi bi-twitter-x"></i>Twitter</a>
+          <a href="#"><i class="bi bi-facebook"></i>Facebook</a>
+          <a href="#"><i class="bi bi-instagram"></i>Instagram</a>
+          <a href="#"><i class="bi bi-whatsapp"></i>Fale conosco!</a>
+        </nav>
+      </div>
+      <div class="container">
+        <h1 class="text-center">Sobre</h1>
+        <nav class="d-flex align-items-start justify-content-left flex-column gap-3">
+          <a href="#">Licença do MIT</a>
+          <a href="#">Copyright &copy; todos os direitos reservados</a>
+          <a href="https://www.github.com/Manasses-Alberto/" rel="external" target="_blank">Desenvolvedor Manassés Ndombele</a>
+        </nav>
+      </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
+    <script src="{% static 'scripts/index.js' %}"></script>
+  </body>
 </html>
