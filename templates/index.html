@@ -32,25 +32,40 @@
             <button type="button" id="search-product-btn" class="px-3"><i class="bi bi-search"></i></button>
           </div>
           <div id="user-actions-area" class="d-flex align-items-center justify-content-between">
-            <button class="btn btn-link d-flex align-items-center justify-content-between"><i class="bi bi-person-circle"></i>Minha conta</button>
+            <button class="btn btn-link d-flex align-items-center justify-content-between" id="account-actions-modal-btn"><i class="bi bi-person-circle"></i>Minha conta</button>
             <button class="btn btn-link d-flex align-items-center justify-content-between" id="add-product-btn"><i class="bi bi-cart-fill"></i><span>0</span></button>
           </div>
     </header>
     <main class="container">
-      <ul class="col-12 d-flex align-items-center justify-content-left flex-wrap gap-3">
-        {% for product in products %}
-        <li>
-          <div class="card">
-            <img src="{{ product.image.url }}" class="card-img-top" alt="Imagem do {{ product.name }}">
-            <div class="card-body d-flex flex-column align-items-start justify-content-between">
-              <h5 class="card-title">{{ product.name }} - {{ product.price }},00 Kz</h5>
-              <p>Categoria: {{ product.category }}</p>
-              <button class="w-100 rounded"><i class="bi bi-currency-dollar"></i>Comprar</button>
+      <article>
+        <ul class="col-12 d-flex align-items-center justify-content-left flex-wrap gap-3">
+          {% for product in products %}
+          <li>
+            <div class="card">
+              <img src="{{ product.image.url }}" class="card-img-top" alt="Imagem do {{ product.name }}">
+              <div class="card-body d-flex flex-column align-items-start justify-content-between">
+                <h5 class="card-title">{{ product.name }} - {{ product.price }},00 Kz</h5>
+                <p>Categoria: {{ product.category }}</p>
+                <button class="w-100 rounded"><i class="bi bi-currency-dollar"></i>Comprar</button>
+              </div>
             </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </article>
+      <aside>
+        <div id="modal-account-actions" class="d-flex flex-column align-items-start justify-content-between p-3 visually-hidden">
+          <div class="modal-header d-flex align-items-center justify-content-between w-100">
+            <h1>Coala Shop - A sua loja de VRs profissionais</h1>
+            <button type="button" class="btn btn-link" id="account-actions-modal-xbtn"><i class="bi bi-x-circle-fill"></i></button>
           </div>
-        </li>
-        {% endfor %}
-      </ul>
+          <p>Crie a sua conta na Coala Shop ou se você já tem uma conta inicie sessão clicando em criar conta!</p>
+          <div class="modal-actions d-flex align-items-center justify-content-between">
+            <button type="button" class="rounded px-3 py-1"><i class="bi bi-box-arrow-in-right"></i>Entrar</button>
+            <button type="button" class="rounded px-3 py-1"><i class="bi bi-floppy2"></i>Criar conta</button>
+          </div>
+        </div>
+      </aside>
     </main>
     <footer class="container-fluid d-flex align-items-start justify-content-evenly p-3">
       <div class="container">

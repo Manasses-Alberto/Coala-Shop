@@ -107,7 +107,8 @@ li { list-style-type: none; }
 
 .card-img-top { transition: all 1s ease-in; }
 
-.card-title {
+.card-title,
+aside h1 {
     font-family: var(--family);
     font-size: 1.2em;
     font-weight: bold;
@@ -122,6 +123,62 @@ li { list-style-type: none; }
     font-size: 1.2em;
     transition: background-color 0.3s ease-in, color 0.5s ease-out;
 }
+
+aside > div {
+    width: 50% !important;
+    position: fixed !important;
+    top: 20%;
+    left: 25%;
+    opacity: 0;
+    border-radius: 10px;
+    transition: opacity 1s ease-in-out;
+}
+
+#modal-account-actions {
+    background-image: url('../images/person-vr.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+}
+
+aside h1 {
+    font-size: 2em;
+    text-shadow: 1px 1px var(--color-e);
+}
+
+aside p {
+    width: 40%;
+    color: var(--color-a);
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: var(--family);
+    text-shadow: 1px 1px 3px var(--color-c);
+}
+
+.modal-header > button {
+    font-size: 1.5em;
+    color: var(--color-c);
+    transition: color 0.3s ease-in-out;
+}
+
+.modal-header > button:hover,
+.modal-header > button:active { color: var(--color-a) !important; }
+
+.modal-actions { width: 40%; }
+
+.modal-actions > button {
+    border: 2px solid var(--color-c);
+    color: var(--color-b);
+    background-color: var(--color-d);
+    font-family: var(--btn-family);
+    font-size: 1.2em;
+    transition: color 0.3s ease-in;
+}
+
+.modal-actions > button:hover { color: var(--color-c); }
+
+.modal-actions i { margin-right: 5px; }
 
 footer { background-color: var(--color-a); }
 
