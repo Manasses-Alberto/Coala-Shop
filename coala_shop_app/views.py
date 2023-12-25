@@ -5,13 +5,12 @@ from django.contrib.auth.decorators import login_required
 from coala_shop_app.models import Product, Shoppings
 from datetime import datetime
 
-@login_required(login_url='/auth/login/')
 def home(request):
     return render(request, 'index.html', {'products': Product.objects.all()})
 
 def login(request):
     if request.method == 'GET':
-        return render(request, 'login.html')
+        return render(request, 'index.html')
 
     elif request.method == 'POST':
         email = request.POST['email'].strip().lower()
@@ -20,7 +19,7 @@ def login(request):
             username = User.objects.get(email=email)
 
         except User.DoesNotExist:
-            return render(request, 'login.html', {'error': True, 'field_error': ['email'], 'message': 'O seu email está inválido. Tente novamente'})
+            return render(request, 'index.html', {'error': True, 'field_error': ['email'], 'message': 'O seu email está inválido. Tente novamente'})
 
         else:
             user = authenticate(request, username=username, password=password)
@@ -28,7 +27,7 @@ def login(request):
                 auth_login(request, user)
             
             except AttributeError:
-                return render(request, 'login.html', {'error': True, 'field_error': ['password'], 'message': 'A sua senha está inválida. Tente novamente'})
+                return render(request, 'index.html', {'error': True, 'field_error': ['password'], 'message': 'A sua senha está inválida. Tente novamente'})
 
             else:
                 return redirect('home')
@@ -40,7 +39,7 @@ def logout(request):
 
 def register(request):
     if request.method == 'GET':
-        return render(request, 'register.html')
+        return render(request, 'index.html')
     
     elif request.method == 'POST':
         first_name = request.POST['first-name']
@@ -51,19 +50,19 @@ def register(request):
         old_username = User.objects.filter(username=f'{first_name.strip().title()} {surname.strip().title()}').first()
         old_email = User.objects.filter(email=email.strip().lower()).first()
         if not first_name.isalpha():
-            return render(request, 'register.html', {'error': True, 'field_error': ['first_name'], 'message': 'O primeiro nome é inválido não inclua símbolos, números ou espaços...'})
+            return render(request, 'index.html', {'error': True, 'field_error': ['first_name'], 'message': 'O primeiro nome é inválido não inclua símbolos, números ou espaços...'})
 
         elif not surname.isalpha():
-            return render(request, 'register.html', {'error': True, 'field_error': ['surname'], 'message': 'O sobrenome é inválido não inclua símbolos, números ou espaços...'})
+            return render(request, 'index.html', {'error': True, 'field_error': ['surname'], 'message': 'O sobrenome é inválido não inclua símbolos, números ou espaços...'})
 
         elif old_username:
-            return render(request, 'register.html', {'error': True, 'field_error': ['first_name', 'surname'], 'message': 'O sistema já encontrou outro usuário com esses nomes...'})
+            return render(request, 'index.html', {'error': True, 'field_error': ['first_name', 'surname'], 'message': 'O sistema já encontrou outro usuário com esses nomes...'})
 
         elif old_email:
-            return render(request, 'register.html', {'error': True, 'field_error': ['email'], 'message': 'O sistema já encontrou outro usuário com esse email...'})
+            return render(request, 'index.html', {'error': True, 'field_error': ['email'], 'message': 'O sistema já encontrou outro usuário com esse email...'})
 
         elif password != password_conf:
-            return render(request, 'register.html', {'error': True, 'field_error': ['password', 'password-confirmation'], 'message': 'Verifique as senhas estão diferentes...'})
+            return render(request, 'index.html', {'error': True, 'field_error': ['password', 'password-confirmation'], 'message': 'Verifique as senhas estão diferentes...'})
 
         else:
             new_user = User.objects.create_user(first_name=first_name.strip().title(), last_name=surname.strip().title(), username=f'{first_name.strip().title()} {surname.strip().title()}', email=email.strip().lower(), password=password)
@@ -72,8 +71,14 @@ def register(request):
             auth_login(request, user)
             return redirect('home')
 
+@login_required(login_url='/auth/login/')
 def add_buy(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     new_shopping = Shoppings.objects.create(buyer=request.user, product=product, date=datetime.today().now())
     new_shopping.save()
     return redirect('home')
+
+@login_required(login_url='/auth/login/')
+def product_details(request, product_id):
+    product = Product.objects.get(pk=product_id)
+    return render(request, 'product-details.html', {'product': product})

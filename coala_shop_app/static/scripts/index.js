@@ -23,7 +23,6 @@ document.querySelector('#account-actions-modal-xbtn').addEventListener('click', 
 })
 
 for (let card of document.querySelector('article').querySelectorAll('.card')) {
-    console.log(card.innerHTML)
     card.addEventListener('mouseover', () => {
         card.style.transform = 'scale(1.03)'
         card.querySelector('.card-title').style.color = '#B4BEC9'
@@ -34,5 +33,10 @@ for (let card of document.querySelector('article').querySelectorAll('.card')) {
         card.style.transform = 'scale(1)'
         card.querySelector('.card-title').style.color = '#002333'
         card.querySelector('p').style.color = '#002333'
+    })
+
+    card.addEventListener('click', () => {
+        let product_id = card.getAttribute('id')
+        location.href = `/product/${product_id}/`
     })
 }

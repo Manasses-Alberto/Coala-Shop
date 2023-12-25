@@ -8,7 +8,9 @@ class Product(models.Model):
     category = models.CharField(max_length=60, default='De uso geral')
     description = models.TextField(max_length=300)
     iva = models.IntegerField()
-    image = models.ImageField(upload_to='images/')
+    image_a = models.ImageField(upload_to='images/')
+    image_b = models.ImageField(upload_to='images/')
+    image_c = models.ImageField(upload_to='images/')
     added = models.DateTimeField()
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
 
