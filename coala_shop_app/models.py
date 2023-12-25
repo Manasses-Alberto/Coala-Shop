@@ -5,6 +5,7 @@ class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80)
     price = models.PositiveBigIntegerField()
+    category = models.CharField(max_length=60, default='De uso geral')
     description = models.TextField(max_length=300)
     iva = models.IntegerField()
     image = models.ImageField(upload_to='images/')
