@@ -40,3 +40,11 @@ for (let card of document.querySelector('article').querySelectorAll('.card')) {
         location.href = `/product/${product_id}/`
     })
 }
+
+document.querySelector('#login-btn').addEventListener('click', () => {
+    location.href = '/auth/login/'
+})
+
+document.querySelector('#register-btn').addEventListener('click', () => {
+    location.href = '/auth/register/'
+})

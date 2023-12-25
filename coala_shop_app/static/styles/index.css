@@ -10,6 +10,8 @@
     --color-e: #FFFFFF;
 }
 
+body { font-family: var(--family); }
+
 header {
     border-bottom: 2px solid var(--color-d);
     z-index: 1000;
@@ -27,7 +29,6 @@ header {
 }
 
 #logo-area > h1 {
-    font-family: var(--family);
     font-size: 1.4em;
     color: var(--color-b);
     font-weight: bold;
@@ -40,7 +41,6 @@ header {
 #search-products-area > input.form-control,
 #search-products-area > input.form-control::placeholder {
     color: var(--color-a);
-    font-family: var(--family);
     font-weight: bold;
 }
 
@@ -53,7 +53,6 @@ header {
 
 .dropdown-item {
     color: var(--color-c);
-    font-family: var(--family);
     cursor: pointer;
     transition: background-color 0.3s ease-in, color 0.5s ease-out;
 }
@@ -83,7 +82,7 @@ header {
 #user-actions-area > button {
     color: var(--color-b);
     text-decoration: none;
-    font-family: var(--family);
+    font-family: var(--btn-family);
     transition: opacity 0.2s ease-in-out;
 }
 
@@ -109,7 +108,6 @@ li { list-style-type: none; }
 
 .card-title,
 aside h1 {
-    font-family: var(--family);
     font-size: 1.2em;
     font-weight: bold;
     color: var(--color-c);
@@ -142,19 +140,100 @@ aside > div {
     height: 400px;
 }
 
-aside h1 {
+#modal-account-actions h1 {
     font-size: 2em;
     text-shadow: 1px 1px var(--color-e);
 }
 
-aside p {
+#modal-account-actions p {
     width: 40%;
     color: var(--color-a);
     font-weight: bold;
     font-size: 1.2em;
-    font-family: var(--family);
     text-shadow: 1px 1px 3px var(--color-c);
 }
+
+.modal-auth {
+    background-color: var(--color-d);
+    border-radius: 20px;
+    box-shadow: 4px 4px 12px var(--color-c);
+}
+
+#modal-register { top: 5%; }
+
+.modal-auth-descriptions {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-image: url('../images/person-vr-2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right center;
+    height: 400px;
+}
+
+#modal-register .modal-auth-descriptions {
+    height: 700px;
+    background-position: top right !important;
+}
+
+.modal-auth h1 {
+    font-size: 1.8em;
+    color: var(--color-c);
+    text-shadow: 1px 1px 3px var(--color-e);
+    font-weight: bold;
+}
+
+.modal-auth p {
+    width: 90%;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-shadow: 2px 2px 6px var(--color-d);
+}
+
+label {
+    color: var(--color-e);
+    font-size: 1.2em;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px var(--color-c);
+    cursor: pointer;
+}
+
+.modal-auth .form-control,
+.modal-auth .form-control:focus,
+.input-group-text {
+    border: 0px none transparent;
+    box-shadow: 1px 1px 5px var(--color-e);
+    color: var(--color-b);
+    background-color: var(--color-e);
+}
+
+form > .btn {
+    color: var(--color-e);
+    background-color: var(--color-b);
+    font-family: var(--btn-family);
+    font-size: 1.2em;
+    transition: transform 0.4s ease-out;
+    cursor: pointer;
+}
+
+form > .btn:hover {
+    color: var(--color-e);
+    background-color: var(--color-b);
+    transform: scale(1.03);
+}
+
+.extra-actions .btn-link {
+    font-size: 1.2em;
+    text-decoration: none;
+    color: var(--color-c);
+}
+
+.extra-actions .btn-link:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--color-b);
+}
+
+.modal-auth .form-control::placeholder { color: var(--color-b); }
 
 .modal-header > button {
     font-size: 1.5em;
@@ -185,14 +264,12 @@ footer { background-color: var(--color-a); }
 footer h1 {
     color: var(--color-d);
     font-size: 1.7em;
-    font-family: var(--family);
     font-weight: bold;
     text-shadow: 1px 1px var(--color-e);
 }
 
 footer a {
     color: var(--color-e);
-    font-family: var(--family);
     text-decoration: none;
 }
 
