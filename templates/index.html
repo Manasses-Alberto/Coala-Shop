@@ -14,32 +14,23 @@
               </ul>
             </article>
             <aside>
-              {% if not request.user.is_authenticated %}<div id="modal-account-actions" class="d-flex flex-column align-items-start justify-content-between p-3 visually-hidden">
-                <div class="modal-header d-flex align-items-center justify-content-between w-100">
+              {% if not request.user.is_authenticated %}<span class="visually-hidden" id="user-session-status">TRUE</span><span class="visually-hidden" id="user-id">{{ request.user.id }}</span><div id="modal-account-actions" class="d-flex flex-column align-items-center justify-content-center visually-hidden">
+                <div class="modal-header p-3 d-flex align-items-start justify-content-between w-100">
                   <h1>Coala Shop - A sua loja de VRs profissionais</h1>
                   <button type="button" class="btn btn-link" id="account-actions-modal-xbtn"><i class="bi bi-x-circle-fill"></i></button>
                 </div>
-                <p>Crie a sua conta na Coala Shop ou se você já tem uma conta inicie sessão clicando em criar conta!</p>
-                <div class="modal-actions d-flex align-items-center justify-content-between">
-                  <button type="button" class="rounded px-3 py-1" id="login-btn"><i class="bi bi-box-arrow-in-right"></i>Entrar</button>
-                  <button type="button" class="rounded px-3 py-1" id="register-btn"><i class="bi bi-floppy2"></i>Criar conta</button>
+                <div class="modal-body p-3 d-flex align-items-center justify-content-left flex-column gap-2 w-100">
+                  <p class="text-center">Crie a sua conta na Coala Shop ou se você já tem uma conta inicie sessão clicando em criar conta!</p>
+                  <div class="modal-actions d-flex align-items-center justify-content-between flex-column gap-3">
+                    <button type="button" class="rounded px-3 py-1 d-flex align-items-start justify-content-center" id="login-btn"><i class="bi bi-box-arrow-in-right"></i>Entrar</button>
+                    <button type="button" class="rounded px-3 py-1 d-flex align-items-start justify-content-center" id="register-btn"><i class="bi bi-floppy2"></i>Criar conta</button>
+                  </div>
                 </div>
-              </div>{% else %}
-              <div id="modal-account-actions" class="d-flex flex-column align-items-start justify-content-between p-3 visually-hidden">
-                <div class="modal-header d-flex align-items-center justify-content-between w-100">
-                  <h1>Coala Shop - A sua loja de VRs profissionais</h1>
-                  <button type="button" class="btn btn-link" id="account-actions-modal-xbtn"><i class="bi bi-x-circle-fill"></i></button>
-                </div>
-                <p>Acesse a sua área na loja confira suas informações e dados pessoais e consulte a nossa equipa de atendimento!</p>
-                <div class="modal-actions d-flex align-items-center justify-content-between w-100">
-                  <button type="button" class="rounded px-3 py-1 d-flex align-items-center justify-content-center" id="user-datas-btn"><i class="bi bi-info-circle-fill"></i>Dados da conta</button>
-                  <button type="button" class="rounded px-3 py-1" id="logout-btn"><i class="bi bi-box-arrow-in-left"></i>Sair da conta</button>
-                </div>
-              </div>{% endif %}{% if login and not request.user.is_authenticated %}
+              </div>{% endif %}{% if login and not request.user.is_authenticated %}<span class="visually-hidden" id="user-session-status">FALSE</span>
               <div id="modal-login" class="modal-auth d-flex align-items-start justify-content-between">
                 <div class="modal-auth-descriptions col-6 p-3 d-flex align-items-start justify-content-left gap-3 flex-column">
                   <h1>Coala Shop - Login</h1>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda odit quasi eum maxime accusamus saepe consequuntur repudiandae delectus exercitationem, sequi rem est placeat vitae harum quam itaque quos repellat.</p>
+                  <p class="w-100">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda odit quasi eum maxime accusamus saepe consequuntur repudiandae delectus exercitationem, sequi rem est placeat vitae harum quam itaque quos repellat.</p>
                 </div>
                 <form action="{% url 'login' %}" method="post" class="p-3 col-6 d-flex align-items-start justify-content-left flex-column gap-2">
                   {% csrf_token %}
@@ -62,20 +53,20 @@
               </div>
               <script>
                 window.onload = function () {
-                  document.querySelector('header').style.opacity = '0.1'
+                  document.querySelector('header').style.opacity = '0'
                   document.querySelector('header').style.pointerEvents = 'none'
-                  document.querySelector('article').style.opacity = '0.1'
+                  document.querySelector('article').style.opacity = '0'
                   document.querySelector('article').style.pointerEvents = 'none'
-                  document.querySelector('footer').style.opacity = '0.1'
+                  document.querySelector('footer').style.opacity = '0'
                   document.querySelector('footer').style.pointerEvents = 'none'
                   document.body.style.overflowY = 'hidden'
                   document.querySelector('#modal-login').style.opacity = '1'
                 }
-              </script>{% endif %}{% if register and not request.user.is_authenticated %}
+              </script>{% endif %}{% if register and not request.user.is_authenticated %}<span class="visually-hidden" id="user-session-status">FALSE</span>
               <div id="modal-register" class="modal-auth d-flex align-items-start justify-content-between">
                 <div class="modal-auth-descriptions col-6 p-3 d-flex align-items-start justify-content-left gap-3 flex-column">
                   <h1>Coala Shop - Registro</h1>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda odit quasi eum maxime accusamus saepe consequuntur repudiandae delectus exercitationem, sequi rem est placeat vitae harum quam itaque quos repellat.</p>
+                  <p class="w-100">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda odit quasi eum maxime accusamus saepe consequuntur repudiandae delectus exercitationem, sequi rem est placeat vitae harum quam itaque quos repellat.</p>
                 </div>
                 <form action="{% url 'register' %}" method="post" class="p-3 col-6 d-flex align-items-start justify-content-left flex-column gap-2">
                   {% csrf_token %}
@@ -113,11 +104,11 @@
               </div>
               <script>
                 window.onload = function () {
-                  document.querySelector('header').style.opacity = '0.1'
+                  document.querySelector('header').style.opacity = '0'
                   document.querySelector('header').style.pointerEvents = 'none'
-                  document.querySelector('article').style.opacity = '0.1'
+                  document.querySelector('article').style.opacity = '0'
                   document.querySelector('article').style.pointerEvents = 'none'
-                  document.querySelector('footer').style.opacity = '0.1'
+                  document.querySelector('footer').style.opacity = '0'
                   document.querySelector('footer').style.pointerEvents = 'none'
                   document.body.style.overflowY = 'hidden'
                   document.querySelector('#modal-register').style.opacity = '1'

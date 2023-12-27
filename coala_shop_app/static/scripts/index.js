@@ -37,6 +37,6 @@ document.querySelector('#register-btn').addEventListener('click', () => {
     location.href = '/auth/register/'
 })
 
-document.querySelector('#logout-btn').addEventListener('click', () => {
+document.querySelector('button#logout-btn').addEventListener('click', () => {
     location.href = '/auth/logout/'
 })
