@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+:root {
+    --family: 'Raleway', sans-serif;
+    --btn-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --color-a: #B4BEC9;
+    --color-b: #159A9C;
+    --color-c: #002333;
+    --color-d: #DEEFE7;
+    --color-e: #FFFFFF;
+}
+
+article {
+    border-bottom: 2px solid var(--color-d);
+    border-top: 2px solid var(--color-d);
+}
+
+.carousel img,
+#product-visualization-carousel {
+    width: 40rem;
+    height: 40rem;
+}
+
+.carousel img {
+    border: 1px solid var(--color-c);
+    width: 20rem;
+    height: 20rem;
+}
+
+.product-descriptions > h1 {
+    color: var(--color-b);
+    font-weight: bold;
+}
+
+.product-actions > p {
+    color: var(--color-b);
+    font-size: 1.2em;
+}
+
+.product-actions .btn-link,
+.product-actions .btn-link:active {
+    text-decoration: none;
+    color: var(--color-b);
+    font-size: 1.2em;
+}
+
+.product-actions > button,
+.product-actions > button:active,
+.send-info-btn,
+.send-info-btn:active {
+    background-color: var(--color-b) !important;
+    border-color: var(--color-a) !important;
+    font-size: 1.1em;
+    color: var(--color-e);
+    transition: opacity 0.1s ease-out, transform 0.2s ease-in;
+}
+
+.product-actions > button:focus,
+.send-info-btn:focus {
+    opacity: 0.8;
+    transform: scale(1.02);
+    color: var(--color-e) !important;
+}
+
+.product-actions > button:hover,
+.send-info-btn:hover {
+    background-color: var(--color-b);
+    border-color: var(--color-a);
+    opacity: 0.8;
+    transform: scale(1.02);
+    color: var(--color-e);
+}
+
+.modal-send-info {
+    position: fixed;
+    top: 20%;
+    left: 25%;
+    width: 50%;
+    background-color: var(--color-d);
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    border-radius: 20px;
+}
+
+.modal-send-info h1 {
+    color: var(--color-b);
+    font-size: 1.4em;
+}
+
+.modal-header > button {
+    font-size: 1.5em;
+    color: var(--color-b);
+    transition: color 0.3s ease-in-out;
+}
+
+.modal-header > button:hover,
+.modal-header > button:active { color: var(--color-c) !important; }
+
+.modal-send-info textarea,
+.modal-send-info textarea:focus,
+.modal-send-info textarea::placeholder {
+    border: 0px none transparent;
+    box-shadow: 1px 1px 5px var(--color-e);
+    color: var(--color-b);
+    background-color: var(--color-e);
+}

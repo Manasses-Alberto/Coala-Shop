@@ -1,189 +1,127 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coala Shop</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
-</head>
-<body>
-    <header class="container-fluid d-flex justify-content-around align-items-center position-fixed">
-        <div id="logo-area" class="d-flex flex-column justify-content-center align-items-center">
-            <img src="{% static 'images/coala-shop-logo.png' %}" alt="Logotipo da loja online Coala Shop">
-            <h1>Coala Shop</h1>
-        </div>
-        <div class="input-group" id="search-products-area">
-            <input type="text" class="form-control" aria-label="Procurar produtos" placeholder="Procurar produtos">
-            <button type="button" class="dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-              <span>Categorias</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item">De uso geral</a></li>
-              <li><a class="dropdown-item">Social</a></li>
-              <li><a class="dropdown-item">Reuniões</a></li>
-              <li><a class="dropdown-item">Gamers</a></li>
-            </ul>
-            <button type="button" id="search-product-btn" class="px-3"><i class="bi bi-search"></i></button>
-          </div>
-          <div id="user-actions-area" class="d-flex align-items-center justify-content-between">
-            <button class="btn btn-link d-flex align-items-center justify-content-between" id="account-actions-modal-btn"><i class="bi bi-person-circle"></i>Minha conta</button>
-            <button class="btn btn-link d-flex align-items-center justify-content-between" id="add-product-btn"><i class="bi bi-cart-fill"></i><span>0</span></button>
-          </div>
-    </header>
-    <main class="container">
-      <article>
-        <ul class="col-12 d-flex align-items-center justify-content-left flex-wrap gap-3">
-          {% for product in products %}
-          <li class="card" id="{{ product.id }}">
-            <img src="{{ product.image_a.url }}" class="card-img-top" alt="Imagem do {{ product.name }}">
-            <div class="card-body d-flex flex-column align-items-start justify-content-between">
-              <h5 class="card-title">{{ product.name }} - {{ product.price }},00 Kz</h5>
-              <p>Categoria: {{ product.category }}</p>
-              <button class="w-100 rounded"><i class="bi bi-currency-dollar"></i>Comprar</button>
-            </div>
-          </li>
-          {% endfor %}
-        </ul>
-      </article>
-      <aside>
-        <div id="modal-account-actions" class="d-flex flex-column align-items-start justify-content-between p-3 visually-hidden">
-          <div class="modal-header d-flex align-items-center justify-content-between w-100">
-            <h1>Coala Shop - A sua loja de VRs profissionais</h1>
-            <button type="button" class="btn btn-link" id="account-actions-modal-xbtn"><i class="bi bi-x-circle-fill"></i></button>
-          </div>
-          <p>Crie a sua conta na Coala Shop ou se você já tem uma conta inicie sessão clicando em criar conta!</p>
-          <div class="modal-actions d-flex align-items-center justify-content-between">
-            <button type="button" class="rounded px-3 py-1" id="login-btn"><i class="bi bi-box-arrow-in-right"></i>Entrar</button>
-            <button type="button" class="rounded px-3 py-1" id="register-btn"><i class="bi bi-floppy2"></i>Criar conta</button>
-          </div>
-        </div>
-        {% if login and not request.user.is_authenticated %}
-        <div id="modal-login" class="modal-auth d-flex align-items-start justify-content-between">
-          <div class="modal-auth-descriptions col-6 p-3 d-flex align-items-start justify-content-left gap-3 flex-column">
-            <h1>Coala Shop - Login</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda odit quasi eum maxime accusamus saepe consequuntur repudiandae delectus exercitationem, sequi rem est placeat vitae harum quam itaque quos repellat.</p>
-          </div>
-          <form action="{% url 'login' %}" method="post" class="p-3 col-6 d-flex align-items-start justify-content-left flex-column gap-2">
-            {% csrf_token %}
-            <label for="email-field">Email</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="email-icon"><i class="bi bi-envelope-at-fill"></i></span>
-              <input type="email" class="form-control" id="email-field" name="email" placeholder="Digite seu email" aria-label="Email" aria-describedby="email-icon">
-            </div>
-            <label for="password-field">Senha</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="password-icon"><i class="bi bi-asterisk"></i></span>
-              <input type="password" class="form-control" id="password-field" name="password" placeholder="Digite sua senha" aria-label="Password" aria-describedby="password-icon">
-            </div>
-            <input type="submit" value="Entrar" class="btn w-100">
-            <div class="extra-actions d-flex align-items-start justify-content-left flex-column gap-2">
-              <a href="{% url 'register' %}" class="btn btn-link">Não tens conta? Registre-se.</a>
-              <a href="{% url 'home' %}" class="btn btn-link">Sair</a>
-            </div>
-          </form>
-        </div>
-        <script>
-          window.onload = function () {
-            document.querySelector('header').style.opacity = '0.1'
-            document.querySelector('header').style.pointerEvents = 'none'
-            document.querySelector('article').style.opacity = '0.1'
-            document.querySelector('article').style.pointerEvents = 'none'
-            document.querySelector('footer').style.opacity = '0.1'
-            document.querySelector('footer').style.pointerEvents = 'none'
-            document.body.style.overflowY = 'hidden'
-            document.querySelector('#modal-login').style.opacity = '1'
-          }
-        </script>
-        {% elif register and not request.user.is_authenticated %}
-        <div id="modal-register" class="modal-auth d-flex align-items-start justify-content-between">
-          <div class="modal-auth-descriptions col-6 p-3 d-flex align-items-start justify-content-left gap-3 flex-column">
-            <h1>Coala Shop - Registro</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda odit quasi eum maxime accusamus saepe consequuntur repudiandae delectus exercitationem, sequi rem est placeat vitae harum quam itaque quos repellat.</p>
-          </div>
-          <form action="{% url 'register' %}" method="post" class="p-3 col-6 d-flex align-items-start justify-content-left flex-column gap-2">
-            {% csrf_token %}
-            <label for="first-name-field">Primeiro nome</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="first-name-icon"><i class="bi bi-braces-asterisk"></i></span>
-              <input type="text" class="form-control" id="first-name-field" name="first-name" placeholder="Digite seu primeiro nome" aria-label="FirstName" aria-describedby="first-name-icon">
-            </div>
-            <label for="surname-field">Sobrenome</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="surname-icon"><i class="bi bi-braces-asterisk"></i></span>
-              <input type="text" class="form-control" id="surname-field" name="surname" placeholder="Digite seu sobrenome" aria-label="Surname" aria-describedby="surname-icon">
-            </div>
-            <label for="email-field">Email</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="email-icon"><i class="bi bi-envelope-at-fill"></i></span>
-              <input type="email" class="form-control" id="email-field" name="email" placeholder="Digite seu email" aria-label="Email" aria-describedby="email-icon">
-            </div>
-            <label for="password-field">Senha</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="password-icon"><i class="bi bi-asterisk"></i></span>
-              <input type="password" class="form-control" id="password-field" name="password" placeholder="Digite sua senha" aria-label="Password" aria-describedby="password-icon">
-            </div>
-            <label for="password-field">Confirmação</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="password-confirmation-icon"><i class="bi bi-asterisk"></i></span>
-              <input type="password" class="form-control" id="password-confirmation-field" name="password-confirmation" placeholder="Digite novamente sua senha" aria-label="PasswordConfirmation" aria-describedby="password-confirmation-icon">
-            </div>
-            <input type="submit" value="Registrar" class="btn w-100">
-            <div class="extra-actions d-flex align-items-start justify-content-left flex-column gap-2">
-              <a href="{% url 'login' %}" class="btn btn-link">Tens conta? Entre.</a>
-              <a href="{% url 'home' %}" class="btn btn-link">Sair</a>
-            </div>
-          </form>
-        </div>
-        <script>
-          window.onload = function () {
-            document.querySelector('header').style.opacity = '0.1'
-            document.querySelector('header').style.pointerEvents = 'none'
-            document.querySelector('article').style.opacity = '0.1'
-            document.querySelector('article').style.pointerEvents = 'none'
-            document.querySelector('footer').style.opacity = '0.1'
-            document.querySelector('footer').style.pointerEvents = 'none'
-            document.body.style.overflowY = 'hidden'
-            document.querySelector('#modal-register').style.opacity = '1'
-          }
-        </script>
-        {% endif %}
-      </aside>
-    </main>
-    <footer class="container-fluid d-flex align-items-start justify-content-evenly p-3">
-      <div class="container">
-        <h1 class="text-center">Links úteis</h1>
-        <nav class="d-flex align-items-start justify-content-left flex-column gap-3">
-          <a href="#">VR Para Negócios</a>
-          <a href="#">VR Para Socializar</a>
-          <a href="#">VR Para Jogos</a>
-          <a href="#">VRs da Meta Inc.</a>
-        </nav>
-      </div>
-      <div class="container">
-        <h1 class="text-center">Suporte</h1>
-        <nav class="d-flex align-items-start justify-content-left flex-column gap-3">
-          <a href="#"><i class="bi bi-twitter-x"></i>Twitter</a>
-          <a href="#"><i class="bi bi-facebook"></i>Facebook</a>
-          <a href="#"><i class="bi bi-instagram"></i>Instagram</a>
-          <a href="#"><i class="bi bi-whatsapp"></i>Fale conosco!</a>
-        </nav>
-      </div>
-      <div class="container">
-        <h1 class="text-center">Sobre</h1>
-        <nav class="d-flex align-items-start justify-content-left flex-column gap-3">
-          <a href="#">Licença do MIT</a>
-          <a href="#">Copyright &copy; todos os direitos reservados</a>
-          <a href="https://www.github.com/Manasses-Alberto/" rel="external" target="_blank">Desenvolvedor Manassés Ndombele</a>
-        </nav>
-      </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="{% static 'scripts/index.js' %}"></script>
-  </body>
-</html>
+{% block styles_links %}<link rel="stylesheet" href="{% static 'styles/index.css' %}">{% endblock %}
+{% block main_contents %}<article>
+              <ul class="col-12 d-flex align-items-center justify-content-left flex-wrap gap-3">
+                {% for product in products %}<li class="card" id="{{ product.id }}">
+                  <img src="{{ product.image_a.url }}" class="card-img-top" alt="Imagem do {{ product.name }}">
+                  <div class="card-body d-flex flex-column align-items-start justify-content-between">
+                    <h5 class="card-title">{{ product.name }} - {{ product.price }},00 Kz</h5>
+                    <p>Categoria: {{ product.category }}</p>
+                    <button class="w-100 rounded d-flex align-items-center justify-content-center"><i class="bi bi-cart-plus mx-2"></i>Adicionar ao carrinho</button>
+                  </div>
+                </li>{% endfor %}
+              </ul>
+            </article>
+            <aside>
+              {% if not request.user.is_authenticated %}<div id="modal-account-actions" class="d-flex flex-column align-items-start justify-content-between p-3 visually-hidden">
+                <div class="modal-header d-flex align-items-center justify-content-between w-100">
+                  <h1>Coala Shop - A sua loja de VRs profissionais</h1>
+                  <button type="button" class="btn btn-link" id="account-actions-modal-xbtn"><i class="bi bi-x-circle-fill"></i></button>
+                </div>
+                <p>Crie a sua conta na Coala Shop ou se você já tem uma conta inicie sessão clicando em criar conta!</p>
+                <div class="modal-actions d-flex align-items-center justify-content-between">
+                  <button type="button" class="rounded px-3 py-1" id="login-btn"><i class="bi bi-box-arrow-in-right"></i>Entrar</button>
+                  <button type="button" class="rounded px-3 py-1" id="register-btn"><i class="bi bi-floppy2"></i>Criar conta</button>
+                </div>
+              </div>{% else %}
+              <div id="modal-account-actions" class="d-flex flex-column align-items-start justify-content-between p-3 visually-hidden">
+                <div class="modal-header d-flex align-items-center justify-content-between w-100">
+                  <h1>Coala Shop - A sua loja de VRs profissionais</h1>
+                  <button type="button" class="btn btn-link" id="account-actions-modal-xbtn"><i class="bi bi-x-circle-fill"></i></button>
+                </div>
+                <p>Acesse a sua área na loja confira suas informações e dados pessoais e consulte a nossa equipa de atendimento!</p>
+                <div class="modal-actions d-flex align-items-center justify-content-between w-100">
+                  <button type="button" class="rounded px-3 py-1 d-flex align-items-center justify-content-center" id="user-datas-btn"><i class="bi bi-info-circle-fill"></i>Dados da conta</button>
+                  <button type="button" class="rounded px-3 py-1" id="logout-btn"><i class="bi bi-box-arrow-in-left"></i>Sair da conta</button>
+                </div>
+              </div>{% endif %}{% if login and not request.user.is_authenticated %}
+              <div id="modal-login" class="modal-auth d-flex align-items-start justify-content-between">
+                <div class="modal-auth-descriptions col-6 p-3 d-flex align-items-start justify-content-left gap-3 flex-column">
+                  <h1>Coala Shop - Login</h1>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda odit quasi eum maxime accusamus saepe consequuntur repudiandae delectus exercitationem, sequi rem est placeat vitae harum quam itaque quos repellat.</p>
+                </div>
+                <form action="{% url 'login' %}" method="post" class="p-3 col-6 d-flex align-items-start justify-content-left flex-column gap-2">
+                  {% csrf_token %}
+                  <label for="email-field">Email</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="email-icon"><i class="bi bi-envelope-at-fill"></i></span>
+                    <input type="email" class="form-control" id="email-field" name="email" placeholder="Digite seu email" aria-label="Email" aria-describedby="email-icon">
+                  </div>
+                  <label for="password-field">Senha</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="password-icon"><i class="bi bi-asterisk"></i></span>
+                    <input type="password" class="form-control" id="password-field" name="password" placeholder="Digite sua senha" aria-label="Password" aria-describedby="password-icon">
+                  </div>
+                  <input type="submit" value="Entrar" class="btn w-100">
+                  <div class="extra-actions d-flex align-items-start justify-content-left flex-column gap-2">
+                    <a href="{% url 'register' %}" class="btn btn-link">Não tens conta? Registre-se.</a>
+                    <a href="{% url 'home' %}" class="btn btn-link">Sair</a>
+                  </div>
+                </form>
+              </div>
+              <script>
+                window.onload = function () {
+                  document.querySelector('header').style.opacity = '0.1'
+                  document.querySelector('header').style.pointerEvents = 'none'
+                  document.querySelector('article').style.opacity = '0.1'
+                  document.querySelector('article').style.pointerEvents = 'none'
+                  document.querySelector('footer').style.opacity = '0.1'
+                  document.querySelector('footer').style.pointerEvents = 'none'
+                  document.body.style.overflowY = 'hidden'
+                  document.querySelector('#modal-login').style.opacity = '1'
+                }
+              </script>{% endif %}{% if register and not request.user.is_authenticated %}
+              <div id="modal-register" class="modal-auth d-flex align-items-start justify-content-between">
+                <div class="modal-auth-descriptions col-6 p-3 d-flex align-items-start justify-content-left gap-3 flex-column">
+                  <h1>Coala Shop - Registro</h1>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda odit quasi eum maxime accusamus saepe consequuntur repudiandae delectus exercitationem, sequi rem est placeat vitae harum quam itaque quos repellat.</p>
+                </div>
+                <form action="{% url 'register' %}" method="post" class="p-3 col-6 d-flex align-items-start justify-content-left flex-column gap-2">
+                  {% csrf_token %}
+                  <label for="first-name-field">Primeiro nome</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="first-name-icon"><i class="bi bi-braces-asterisk"></i></span>
+                    <input type="text" class="form-control" id="first-name-field" name="first-name" placeholder="Digite seu primeiro nome" aria-label="FirstName" aria-describedby="first-name-icon">
+                  </div>
+                  <label for="surname-field">Sobrenome</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="surname-icon"><i class="bi bi-braces-asterisk"></i></span>
+                    <input type="text" class="form-control" id="surname-field" name="surname" placeholder="Digite seu sobrenome" aria-label="Surname" aria-describedby="surname-icon">
+                  </div>
+                  <label for="email-field">Email</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="email-icon"><i class="bi bi-envelope-at-fill"></i></span>
+                    <input type="email" class="form-control" id="email-field" name="email" placeholder="Digite seu email" aria-label="Email" aria-describedby="email-icon">
+                  </div>
+                  <label for="password-field">Senha</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="password-icon"><i class="bi bi-asterisk"></i></span>
+                    <input type="password" class="form-control" id="password-field" name="password" placeholder="Digite sua senha" aria-label="Password" aria-describedby="password-icon">
+                  </div>
+                  <label for="password-field">Confirmação</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="password-confirmation-icon"><i class="bi bi-asterisk"></i></span>
+                    <input type="password" class="form-control" id="password-confirmation-field" name="password-confirmation" placeholder="Digite novamente sua senha" aria-label="PasswordConfirmation" aria-describedby="password-confirmation-icon">
+                  </div>
+                  <input type="submit" value="Registrar" class="btn w-100">
+                  <div class="extra-actions d-flex align-items-start justify-content-left flex-column gap-2">
+                    <a href="{% url 'login' %}" class="btn btn-link">Tens conta? Entre.</a>
+                    <a href="{% url 'home' %}" class="btn btn-link">Sair</a>
+                  </div>
+                </form>
+              </div>
+              <script>
+                window.onload = function () {
+                  document.querySelector('header').style.opacity = '0.1'
+                  document.querySelector('header').style.pointerEvents = 'none'
+                  document.querySelector('article').style.opacity = '0.1'
+                  document.querySelector('article').style.pointerEvents = 'none'
+                  document.querySelector('footer').style.opacity = '0.1'
+                  document.querySelector('footer').style.pointerEvents = 'none'
+                  document.body.style.overflowY = 'hidden'
+                  document.querySelector('#modal-register').style.opacity = '1'
+                }
+              </script>
+              {% endif %}
+            </aside>{% endblock %}{% block scripts_links %}<script src="{% static 'scripts/index.js' %}"></script>{% endblock %}

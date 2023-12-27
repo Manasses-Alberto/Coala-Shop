@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Coala Shop</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+        {% block styles_links %}{% endblock %}
+    </head>
+    <body>
+        <header class="container-fluid d-flex justify-content-around align-items-center position-fixed">
+        <div id="logo-area" class="d-flex flex-column justify-content-center align-items-center">
+            <img src="{% static 'images/coala-shop-logo.png' %}" alt="Logotipo da loja online Coala Shop">
+            <h1>Coala Shop</h1>
+        </div>
+        <div class="input-group" id="search-products-area">
+            <input type="text" class="form-control" aria-label="Procurar produtos" placeholder="Procurar produtos">
+            <button type="button" class="dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span>Categorias</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item">De uso geral</a></li>
+                <li><a class="dropdown-item">Social</a></li>
+                <li><a class="dropdown-item">Reuniões</a></li>
+                <li><a class="dropdown-item">Gamers</a></li>
+            </ul>
+            <button type="button" id="search-product-btn" class="px-3"><i class="bi bi-search"></i></button>
+            </div>
+            <div id="user-actions-area" class="d-flex align-items-center justify-content-between">
+            <button class="btn btn-link d-flex align-items-center justify-content-between" id="account-actions-modal-btn"><i class="bi bi-person-circle"></i>Minha conta</button>
+            <button class="btn btn-link d-flex align-items-center justify-content-between" id="redirect-to-home-btn"><i class="bi bi-house-fill"></i></button>
+            </div>
+        </header>
+        <main class="container">
+            {% block main_contents %}{% endblock %}
+        </main>
+        <footer class="container-fluid d-flex align-items-start justify-content-evenly p-3">
+        <div class="container">
+            <h1 class="text-center">Links úteis</h1>
+            <nav class="d-flex align-items-start justify-content-left flex-column gap-3">
+            <a href="#">VR Para Negócios</a>
+            <a href="#">VR Para Socializar</a>
+            <a href="#">VR Para Jogos</a>
+            </nav>
+        </div>
+        <div class="container">
+            <h1 class="text-center">Suporte</h1>
+            <nav class="d-flex align-items-start justify-content-left flex-column gap-3">
+            <a href="#"><i class="bi bi-twitter-x"></i>Twitter</a>
+            <a href="#"><i class="bi bi-facebook"></i>Facebook</a>
+            <a href="#"><i class="bi bi-instagram"></i>Instagram</a>
+            <a href="#"><i class="bi bi-whatsapp"></i>Fale conosco!</a>
+            </nav>
+        </div>
+        <div class="container">
+            <h1 class="text-center">Sobre</h1>
+            <nav class="d-flex align-items-start justify-content-left flex-column gap-3">
+            <a href="#">Licença do MIT</a>
+            <a href="#">Copyright &copy; todos os direitos reservados</a>
+            <a href="https://www.github.com/Manasses-Alberto/" rel="external" target="_blank">Desenvolvedor Manassés Ndombele</a>
+            </nav>
+        </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="{% static 'scripts/base.js' %}"></script>
+        {% block scripts_links %}
+        {% endblock %}
+    </body>
+</html>

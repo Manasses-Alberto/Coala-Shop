@@ -1,15 +1,3 @@
-document.querySelector('#account-actions-modal-btn').addEventListener('click', () => {
-    document.querySelector('header').style.opacity = '0.1'
-    document.querySelector('header').style.pointerEvents = 'none'
-    document.querySelector('article').style.opacity = '0.1'
-    document.querySelector('article').style.pointerEvents = 'none'
-    document.querySelector('footer').style.opacity = '0.1'
-    document.querySelector('footer').style.pointerEvents = 'none'
-    document.body.style.overflowY = 'hidden'
-    document.querySelector('#modal-account-actions').classList.remove('visually-hidden')
-    document.querySelector('#modal-account-actions').style.opacity = '1'
-})
-
 document.querySelector('#account-actions-modal-xbtn').addEventListener('click', () => {
     document.querySelector('header').style.opacity = '1'
     document.querySelector('header').style.pointerEvents = 'auto'
@@ -47,4 +35,8 @@ document.querySelector('#login-btn').addEventListener('click', () => {
 
 document.querySelector('#register-btn').addEventListener('click', () => {
     location.href = '/auth/register/'
+})
+
+document.querySelector('#logout-btn').addEventListener('click', () => {
+    location.href = '/auth/logout/'
 })
