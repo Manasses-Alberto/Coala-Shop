@@ -1,15 +1,3 @@
-document.querySelector('#account-actions-modal-xbtn').addEventListener('click', () => {
-    document.querySelector('header').style.opacity = '1'
-    document.querySelector('header').style.pointerEvents = 'auto'
-    document.querySelector('article').style.opacity = '1'
-    document.querySelector('article').style.pointerEvents = 'auto'
-    document.querySelector('footer').style.opacity = '1'
-    document.querySelector('footer').style.pointerEvents = 'auto'
-    document.body.style.overflowY = 'auto'
-    document.querySelector('#modal-account-actions').classList.add('visually-hidden')
-    document.querySelector('#modal-account-actions').style.opacity = '0'
-})
-
 for (let card of document.querySelector('article').querySelectorAll('.card')) {
     card.addEventListener('mouseover', () => {
         card.style.transform = 'scale(1.03)'
@@ -28,6 +16,18 @@ for (let card of document.querySelector('article').querySelectorAll('.card')) {
         location.href = `/product/${product_id}/`
     })
 }
+
+document.querySelector('#account-actions-modal-xbtn').addEventListener('click', () => {
+    document.querySelector('header').style.opacity = '1'
+    document.querySelector('header').style.pointerEvents = 'auto'
+    document.querySelector('article').style.opacity = '1'
+    document.querySelector('article').style.pointerEvents = 'auto'
+    document.querySelector('footer').style.opacity = '1'
+    document.querySelector('footer').style.pointerEvents = 'auto'
+    document.body.style.overflowY = 'auto'
+    document.querySelector('#modal-account-actions').classList.add('visually-hidden')
+    document.querySelector('#modal-account-actions').style.opacity = '0'
+})
 
 document.querySelector('#login-btn').addEventListener('click', () => {
     location.href = '/auth/login/'
