@@ -14,7 +14,7 @@
               </ul>
             </article>
             <aside>
-              {% if not request.user.is_authenticated %}<span class="visually-hidden" id="user-session-status">TRUE</span><span class="visually-hidden" id="user-id">{{ request.user.id }}</span><div id="modal-account-actions" class="d-flex flex-column align-items-center justify-content-center visually-hidden">
+              {% if not request.user.is_authenticated %}
                 <div class="modal-header p-3 d-flex align-items-start justify-content-between w-100">
                   <h1>Coala Shop - A sua loja de VRs profissionais</h1>
                   <button type="button" class="btn btn-link" id="account-actions-modal-xbtn"><i class="bi bi-x-circle-fill"></i></button>
@@ -26,93 +26,6 @@
                     <button type="button" class="rounded px-3 py-1 d-flex align-items-start justify-content-center" id="register-btn"><i class="bi bi-floppy2"></i>Criar conta</button>
                   </div>
                 </div>
-              </div>{% endif %}{% if login and not request.user.is_authenticated %}<span class="visually-hidden" id="user-session-status">FALSE</span>
-              <div id="modal-login" class="modal-auth d-flex align-items-start justify-content-between">
-                <div class="modal-auth-descriptions col-6 p-3 d-flex align-items-start justify-content-left gap-3 flex-column">
-                  <h1>Coala Shop - Login</h1>
-                  <p class="w-100">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda odit quasi eum maxime accusamus saepe consequuntur repudiandae delectus exercitationem, sequi rem est placeat vitae harum quam itaque quos repellat.</p>
-                </div>
-                <form action="{% url 'login' %}" method="post" class="p-3 col-6 d-flex align-items-start justify-content-left flex-column gap-2">
-                  {% csrf_token %}
-                  <label for="email-field">Email</label>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="email-icon"><i class="bi bi-envelope-at-fill"></i></span>
-                    <input type="email" class="form-control" id="email-field" name="email" placeholder="Digite seu email" aria-label="Email" aria-describedby="email-icon">
-                  </div>
-                  <label for="password-field">Senha</label>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="password-icon"><i class="bi bi-asterisk"></i></span>
-                    <input type="password" class="form-control" id="password-field" name="password" placeholder="Digite sua senha" aria-label="Password" aria-describedby="password-icon">
-                  </div>
-                  <input type="submit" value="Entrar" class="btn w-100">
-                  <div class="extra-actions d-flex align-items-start justify-content-left flex-column gap-2">
-                    <a href="{% url 'register' %}" class="btn btn-link">Não tens conta? Registre-se.</a>
-                    <a href="{% url 'home' %}" class="btn btn-link">Sair</a>
-                  </div>
-                </form>
-              </div>
-              <script>
-                window.onload = function () {
-                  document.querySelector('header').style.opacity = '0'
-                  document.querySelector('header').style.pointerEvents = 'none'
-                  document.querySelector('article').style.opacity = '0'
-                  document.querySelector('article').style.pointerEvents = 'none'
-                  document.querySelector('footer').style.opacity = '0'
-                  document.querySelector('footer').style.pointerEvents = 'none'
-                  document.body.style.overflowY = 'hidden'
-                  document.querySelector('#modal-login').style.opacity = '1'
-                }
-              </script>{% endif %}{% if register and not request.user.is_authenticated %}<span class="visually-hidden" id="user-session-status">FALSE</span>
-              <div id="modal-register" class="modal-auth d-flex align-items-start justify-content-between">
-                <div class="modal-auth-descriptions col-6 p-3 d-flex align-items-start justify-content-left gap-3 flex-column">
-                  <h1>Coala Shop - Registro</h1>
-                  <p class="w-100">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda odit quasi eum maxime accusamus saepe consequuntur repudiandae delectus exercitationem, sequi rem est placeat vitae harum quam itaque quos repellat.</p>
-                </div>
-                <form action="{% url 'register' %}" method="post" class="p-3 col-6 d-flex align-items-start justify-content-left flex-column gap-2">
-                  {% csrf_token %}
-                  <label for="first-name-field">Primeiro nome</label>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="first-name-icon"><i class="bi bi-braces-asterisk"></i></span>
-                    <input type="text" class="form-control" id="first-name-field" name="first-name" placeholder="Digite seu primeiro nome" aria-label="FirstName" aria-describedby="first-name-icon">
-                  </div>
-                  <label for="surname-field">Sobrenome</label>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="surname-icon"><i class="bi bi-braces-asterisk"></i></span>
-                    <input type="text" class="form-control" id="surname-field" name="surname" placeholder="Digite seu sobrenome" aria-label="Surname" aria-describedby="surname-icon">
-                  </div>
-                  <label for="email-field">Email</label>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="email-icon"><i class="bi bi-envelope-at-fill"></i></span>
-                    <input type="email" class="form-control" id="email-field" name="email" placeholder="Digite seu email" aria-label="Email" aria-describedby="email-icon">
-                  </div>
-                  <label for="password-field">Senha</label>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="password-icon"><i class="bi bi-asterisk"></i></span>
-                    <input type="password" class="form-control" id="password-field" name="password" placeholder="Digite sua senha" aria-label="Password" aria-describedby="password-icon">
-                  </div>
-                  <label for="password-field">Confirmação</label>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="password-confirmation-icon"><i class="bi bi-asterisk"></i></span>
-                    <input type="password" class="form-control" id="password-confirmation-field" name="password-confirmation" placeholder="Digite novamente sua senha" aria-label="PasswordConfirmation" aria-describedby="password-confirmation-icon">
-                  </div>
-                  <input type="submit" value="Registrar" class="btn w-100">
-                  <div class="extra-actions d-flex align-items-start justify-content-left flex-column gap-2">
-                    <a href="{% url 'login' %}" class="btn btn-link">Tens conta? Entre.</a>
-                    <a href="{% url 'home' %}" class="btn btn-link">Sair</a>
-                  </div>
-                </form>
-              </div>
-              <script>
-                window.onload = function () {
-                  document.querySelector('header').style.opacity = '0'
-                  document.querySelector('header').style.pointerEvents = 'none'
-                  document.querySelector('article').style.opacity = '0'
-                  document.querySelector('article').style.pointerEvents = 'none'
-                  document.querySelector('footer').style.opacity = '0'
-                  document.querySelector('footer').style.pointerEvents = 'none'
-                  document.body.style.overflowY = 'hidden'
-                  document.querySelector('#modal-register').style.opacity = '1'
-                }
-              </script>
-              {% endif %}
-            </aside>{% endblock %}{% block scripts_links %}<script src="{% static 'scripts/index.js' %}"></script>{% endblock %}
+              </div>{% endif %}
+            </aside>
+          </article>{% endblock %}{% block scripts_links %}<script src="{% static 'scripts/index.js' %}"></script>{% endblock %}
