@@ -10,11 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/auth.css' %}">
 </head>
 <body>
-    <main id="modal-login" class="modal-auth d-flex align-items-start justify-content-between">
-        <div class="modal-auth-descriptions col-6 p-3 d-flex align-items-start justify-content-left gap-3 flex-column">
+    <main class="auth-container d-flex align-items-start justify-content-between m-auto">
+        <div class="auth-descriptions col-6 p-3 d-flex align-items-start justify-content-left gap-3 flex-column">
           <h1>Coala Shop - Login</h1>
           <p class="w-100">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda odit quasi eum maxime accusamus saepe consequuntur repudiandae delectus exercitationem, sequi rem est placeat vitae harum quam itaque quos repellat.</p>
         </div>
@@ -33,7 +33,7 @@
           <input type="submit" value="Entrar" class="btn w-100">
           <div class="extra-actions d-flex align-items-start justify-content-left flex-column gap-2">
             <a href="{% url 'register' %}" class="btn btn-link">Não tens conta? Registre-se.</a>
-            <a href="{% url 'home' %}" class="btn btn-link">Sair</a>
+            <a href="{% url 'home' %}" class="btn btn-link">Voltar</a>
           </div>
         </form>
     </main>

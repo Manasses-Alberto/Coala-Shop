@@ -10,15 +10,24 @@
     --color-e: #FFFFFF;
 }
 
-.modal-auth {
+.auth-container {
     background-color: var(--color-d);
     border-radius: 20px;
-    box-shadow: 4px 4px 12px var(--color-c);
+    box-shadow: 20px 20px 30px var(--color-a);
+    width: 60%;
+    position: fixed;    
+    top: 20%;
+    left: 20%;
 }
 
-#modal-register { top: 5%; }
+#main-register { top: 5%; }
 
-.modal-auth-descriptions {
+#main-register > div {
+    background-position: top center;
+    height: 660px;
+}
+
+.auth-descriptions {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     background-image: url('../images/person-vr-2.png');
@@ -28,18 +37,14 @@
     height: 400px;
 }
 
-#modal-register .modal-auth-descriptions {
-    height: 700px;
-}
-
-.modal-auth h1 {
+.auth-container h1 {
     font-size: 1.8em;
     color: var(--color-c);
     text-shadow: 1px 1px 3px var(--color-e);
     font-weight: bold;
 }
 
-.modal-auth p {
+.auth-container p {
     font-size: 1.3em;
     font-style: italic;
 }
@@ -52,8 +57,8 @@ label {
     cursor: pointer;
 }
 
-.modal-auth .form-control,
-.modal-auth .form-control:focus,
+.auth-container .form-control,
+.auth-container .form-control:focus,
 .input-group-text {
     border: 0px none transparent;
     box-shadow: 1px 1px 5px var(--color-e);
@@ -66,14 +71,14 @@ form > .btn {
     background-color: var(--color-b);
     font-family: var(--btn-family);
     font-size: 1.2em;
-    transition: transform 0.4s ease-out;
+    transition: opacity 0.4s ease-out;
     cursor: pointer;
 }
 
 form > .btn:hover {
     color: var(--color-e);
     background-color: var(--color-b);
-    transform: scale(1.03);
+    opacity: 0.8;
 }
 
 .extra-actions .btn-link {
@@ -87,4 +92,4 @@ form > .btn:hover {
     text-decoration-color: var(--color-b);
 }
 
-.modal-auth .form-control::placeholder { color: var(--color-b); }
+.auth-container .form-control::placeholder { color: var(--color-b); }

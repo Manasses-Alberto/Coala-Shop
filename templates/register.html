@@ -10,11 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'register.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/auth.css' %}">
 </head>
 <body>
-    <main id="modal-register" class="modal-auth d-flex align-items-start justify-content-between">
-        <div class="modal-auth-descriptions col-6 p-3 d-flex align-items-start justify-content-left gap-3 flex-column">
+    <main id="main-register" class="auth-container d-flex align-items-start justify-content-between m-auto">
+        <div class="auth-descriptions col-6 p-3 d-flex align-items-start justify-content-left gap-3 flex-column">
           <h1>Coala Shop - Registro</h1>
           <p class="w-100">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda odit quasi eum maxime accusamus saepe consequuntur repudiandae delectus exercitationem, sequi rem est placeat vitae harum quam itaque quos repellat.</p>
         </div>
@@ -40,7 +40,7 @@
             <span class="input-group-text" id="password-icon"><i class="bi bi-asterisk"></i></span>
             <input type="password" class="form-control" id="password-field" name="password" placeholder="Digite sua senha" aria-label="Password" aria-describedby="password-icon">
           </div>
-          <label for="password-field">Confirmação</label>
+          <label for="password-confirmation-field">Confirmação</label>
           <div class="input-group mb-3">
             <span class="input-group-text" id="password-confirmation-icon"><i class="bi bi-asterisk"></i></span>
             <input type="password" class="form-control" id="password-confirmation-field" name="password-confirmation" placeholder="Digite novamente sua senha" aria-label="PasswordConfirmation" aria-describedby="password-confirmation-icon">
@@ -48,7 +48,7 @@
           <input type="submit" value="Registrar" class="btn w-100">
           <div class="extra-actions d-flex align-items-start justify-content-left flex-column gap-2">
             <a href="{% url 'login' %}" class="btn btn-link">Tens conta? Entre.</a>
-            <a href="{% url 'home' %}" class="btn btn-link">Sair</a>
+            <a href="{% url 'home' %}" class="btn btn-link">Voltar</a>
           </div>
         </form>
     </main>

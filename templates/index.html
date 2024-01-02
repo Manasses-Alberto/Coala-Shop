@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block styles_links %}<link rel="stylesheet" href="{% static 'styles/index.css' %}">{% endblock %}
-{% block main_contents %}<article>
+{% block main_contents %}<article id="products-datas" data-authenticated="{{ request.user.is_authenticated }}" data-user="{{ request.user.id }}">
               <ul class="col-12 d-flex align-items-center justify-content-left flex-wrap gap-3">
                 {% for product in products %}<li class="card" id="{{ product.id }}">
                   <img src="{{ product.image_a.url }}" class="card-img-top" alt="Imagem do {{ product.name }}">
@@ -14,18 +14,18 @@
               </ul>
             </article>
             <aside>
-              {% if not request.user.is_authenticated %}
-                <div class="modal-header p-3 d-flex align-items-start justify-content-between w-100">
-                  <h1>Coala Shop - A sua loja de VRs profissionais</h1>
-                  <button type="button" class="btn btn-link" id="account-actions-modal-xbtn"><i class="bi bi-x-circle-fill"></i></button>
-                </div>
-                <div class="modal-body p-3 d-flex align-items-center justify-content-left flex-column gap-2 w-100">
-                  <p class="text-center">Crie a sua conta na Coala Shop ou se você já tem uma conta inicie sessão clicando em criar conta!</p>
-                  <div class="modal-actions d-flex align-items-center justify-content-between flex-column gap-3">
-                    <button type="button" class="rounded px-3 py-1 d-flex align-items-start justify-content-center" id="login-btn"><i class="bi bi-box-arrow-in-right"></i>Entrar</button>
-                    <button type="button" class="rounded px-3 py-1 d-flex align-items-start justify-content-center" id="register-btn"><i class="bi bi-floppy2"></i>Criar conta</button>
+                <div id="modal-account-actions" class="d-block visually-hidden">
+                  <div class="modal-header p-3 d-flex align-items-start justify-content-between w-100">
+                    <h1>Coala Shop - A sua loja de VRs profissionais</h1>
+                    <button type="button" class="btn btn-link" id="account-actions-modal-xbtn"><i class="bi bi-x-circle-fill"></i></button>
+                  </div>
+                  <div class="modal-body p-3 d-flex align-items-center justify-content-left flex-column gap-2 w-100">
+                    <p class="text-center">Crie a sua conta na Coala Shop ou se você já tem uma conta inicie sessão clicando em criar conta!</p>
+                    <div class="modal-actions d-flex align-items-center justify-content-between flex-column gap-3">
+                      <button type="button" class="rounded px-3 py-1 d-flex align-items-start justify-content-center" id="login-btn"><i class="bi bi-box-arrow-in-right"></i>Entrar</button>
+                      <button type="button" class="rounded px-3 py-1 d-flex align-items-start justify-content-center" id="register-btn"><i class="bi bi-floppy2"></i>Criar conta</button>
+                    </div>
                   </div>
                 </div>
-              </div>{% endif %}
             </aside>
           </article>{% endblock %}{% block scripts_links %}<script src="{% static 'scripts/index.js' %}"></script>{% endblock %}
